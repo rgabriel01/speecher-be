@@ -1,13 +1,13 @@
-class Speeches::Fetcher
+class SpeechServices::Fetcher
   def initialize(show_active: true)
     @show_active = show_active
   end
 
-  def self.process(show_active: true)
-    new(show_active: show_active).process
+  def self.call(show_active: true)
+    new(show_active: show_active).call
   end
 
-  def process
+  def call
     Speech
       .includes(:user)
       .where(deleted: !@show_active)
