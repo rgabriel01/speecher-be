@@ -6,4 +6,6 @@ class Speech < ApplicationRecord
             :user_id,
             :date,
             presence: true
+
+  scope :active, ->  { where(deleted: false) }
 end
