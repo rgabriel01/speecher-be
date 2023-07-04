@@ -4,6 +4,7 @@ class CreateUsersTable < ActiveRecord::Migration[7.0]
       t.string :email, null: false
       t.string :first_name, null: false
       t.string :last_name, null: false
+
       t.timestamps
     end
 
