@@ -1,14 +1,14 @@
 class SpeechServices::Creator
-  def initialize(speech_params)
-    @speech_params = speech_params
+  def initialize(params)
+    @params = params
   end
 
-  def self.call(speech_params)
-    new(speech_params).call
+  def self.call(params)
+    new(params).call
   end
 
   def call
-    speech = Speech.new(@speech_params)
+    speech = Speech.new(@params)
     success = speech.save
     data = success ? SpeechSerializer.new(speech).serializable_hash[:data] : {}
 

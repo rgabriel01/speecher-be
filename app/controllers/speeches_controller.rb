@@ -1,5 +1,5 @@
 class SpeechesController < ApplicationController
-  protect_from_forgery except: [:create]
+  protect_from_forgery except: [:create, :update]
 
   def index
     data = SpeechServices::Fetcher.call
@@ -30,13 +30,29 @@ class SpeechesController < ApplicationController
     end
   end
 
-  def update; end
+  def update
+    result, data, error_messages = SpeechServices::Updater.call(params[:id], update_params)
+
+    respond_to do |format|
+      format.json do
+        render json: {
+          ok: result,
+          data: data,
+          error_messages: error_messages
+        }
+      end
+    end
+  end
 
   private
 
   def create_params
     params
-      .require(:speech)
       .permit(:title, :body, :date, :user_id)
+  end
+
+  def update_params
+    params
+      .permit(:title, :body, :date)
   end
 end
