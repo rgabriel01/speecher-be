@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_04_081303) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_04_085241) do
   create_table "speeches", force: :cascade do |t|
     t.text "title", null: false
     t.text "body", null: false
@@ -31,4 +31,5 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_04_081303) do
     t.index ["email"], name: "index_users_on_email"
   end
 
+  add_foreign_key "speeches", "users"
 end
