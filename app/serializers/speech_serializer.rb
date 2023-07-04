@@ -5,11 +5,13 @@ class SpeechSerializer
               :body
 
   attribute :speech_date do |speech|
-    speech.date.strftime('%Y %b %d')
+    # speech.date.strftime('%Y %b %d')
+    speech.date
   end
 
   attribute :created_at do |speech|
-    speech.created_at.strftime('%m-%d-%y %I:%M%p')
+    # speech.created_at.strftime('%m-%d-%y %I:%M%p')
+    speech.created_at
   end
 
   attribute :author do |speech|
