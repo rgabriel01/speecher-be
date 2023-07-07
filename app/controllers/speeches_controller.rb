@@ -1,5 +1,5 @@
 class SpeechesController < ApplicationController
-  protect_from_forgery except: [:create, :update]
+  protect_from_forgery except: [:create, :update, :fetch_by_author]
 
   def index
     data = SpeechServices::Fetcher.call
@@ -39,6 +39,21 @@ class SpeechesController < ApplicationController
           ok: result,
           data: data,
           error_messages: error_messages
+        }
+      end
+    end
+  end
+
+  def fetch_by_author
+    data = SpeechServices::Fetcher.call(author_id: params[:author_id])
+
+    respond_to do |format|
+      format.json do
+        render json: {
+          ok: true,
+          data: SpeechSerializer
+            .new(data)
+            .serializable_hash[:data]
         }
       end
     end
