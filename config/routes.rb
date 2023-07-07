@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "articles#index"
-  resources :speeches, only: %i[index create update]
+  resources :speeches, only: %i[index create update], defaults: { format: 'json' }
 
   get '/speeches/fetch_by_author/:author_id', to: 'speeches#fetch_by_author', as: :fetch_by_author, defaults: { format: 'json' }
 end
