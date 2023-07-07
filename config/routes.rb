@@ -5,5 +5,5 @@ Rails.application.routes.draw do
   # root "articles#index"
   resources :speeches, only: %i[index create update]
 
-  get '/speeches/fetch_by_author/:author_id', to: 'speeches#fetch_by_author', as: :fetch_by_author
+  get '/speeches/fetch_by_author/:author_id', to: 'speeches#fetch_by_author', as: :fetch_by_author, defaults: { format: 'json' }
 end
