@@ -1,5 +1,5 @@
 class SpeechesController < ApplicationController
-  protect_from_forgery except: [:create, :update, :fetch_by_author]
+  protect_from_forgery except: [:create, :update, :fetch_by_author, :search]
 
   def index
     data = SpeechServices::Fetcher.call
