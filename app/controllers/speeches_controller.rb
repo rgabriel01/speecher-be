@@ -59,6 +59,25 @@ class SpeechesController < ApplicationController
     end
   end
 
+  def search
+    data = SpeechServices::Fetcher.call(
+      author_id: params[:author_id],
+      body: params[:body],
+      date_range: params[:date_range]
+    )
+
+    respond_to do |format|
+      format.json do
+        render json: {
+          ok: true,
+          data: SpeechSerializer
+            .new(data)
+            .serializable_hash[:data]
+        }
+      end
+    end
+  end
+
   private
 
   def create_params

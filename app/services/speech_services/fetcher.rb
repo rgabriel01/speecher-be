@@ -1,11 +1,28 @@
 class SpeechServices::Fetcher
-  def initialize(show_active: true, author_id: nil)
+  def initialize(
+    show_active: true,
+    author_id: nil,
+    body: nil,
+    date_range: nil
+  )
     @show_active = show_active
     @author_id = author_id
+    @body = body
+    @date_range = date_range
   end
 
-  def self.call(show_active: true, author_id: nil)
-    new(show_active: show_active, author_id: author_id).call
+  def self.call(
+    show_active: true,
+    author_id: nil,
+    body: nil,
+    date_range: nil
+  )
+    new(
+      show_active: show_active,
+      author_id: author_id,
+      body: body,
+      date_range: date_range
+    ).call
   end
 
   def call
@@ -14,6 +31,9 @@ class SpeechServices::Fetcher
       .where(deleted: !@show_active)
 
     query = query.where(user_id: @author_id) if @author_id.present?
+    query = query.where("body LIKE ?", "%#{@body}%") if @body.present?
+    query = query.where('date BETWEEN ? AND ?', @date_range.first, @date_range.last) if @date_range.present?
+
     query
   end
 end
