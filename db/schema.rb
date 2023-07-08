@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_04_085241) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_08_052238) do
   create_table "speeches", force: :cascade do |t|
     t.text "title", null: false
     t.text "body", null: false
@@ -19,6 +19,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_04_085241) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "deleted", default: false, null: false
+    t.string "tags"
   end
 
   create_table "users", force: :cascade do |t|
