@@ -63,7 +63,8 @@ class SpeechesController < ApplicationController
     data = SpeechServices::Fetcher.call(
       author_id: params[:author_id],
       body: params[:body],
-      date_range: params[:date_range]
+      date_range: params[:date_range],
+      tags: params[:tags]
     )
 
     respond_to do |format|
