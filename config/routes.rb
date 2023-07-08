@@ -8,4 +8,6 @@ Rails.application.routes.draw do
 
   get '/speeches/fetch_by_author/:author_id', to: 'speeches#fetch_by_author', as: :fetch_by_author, defaults: { format: 'json' }
   get '/speeches/search', to: 'speeches#search', as: :search, defaults: { format: 'json' }
+
+  get '/users/authenticate', to: 'users#authenticate', as: :authenticate, defaults: { format: 'json' }
 end
