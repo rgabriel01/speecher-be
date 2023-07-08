@@ -82,11 +82,11 @@ class SpeechesController < ApplicationController
 
   def create_params
     params
-      .permit(:title, :body, :date, :user_id)
+      .permit(:title, :body, :date, :user_id, :tags)
   end
 
   def update_params
     params
-      .permit(:title, :body, :date, :deleted)
+      .permit(:title, :body, :date, :deleted, :tags)
   end
 end
