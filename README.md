@@ -1,8 +1,8 @@
 # Speecher [Backend]
 
 # Tech Stack
-Ruby 2.7.1
-Rails 7.0.6
+* Ruby 2.7.1
+* Rails 7.0.6
 
 ## Setup
 1. Clone the repository
